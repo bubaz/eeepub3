@@ -89,7 +89,11 @@ module EeePub
     def build_manifest(builder)
       builder.manifest do
         complete_manifest.each do |i|
-          builder.item :id => i[:id], :href => i[:href], 'media-type' => i[:media_type]
+          if i[:media_type] == 'application/xhtml+xml'
+            builder.item :id => i[:id], :href => i[:href], 'media-type' => i[:media_type], 'properties' => 'scripted'
+          else
+            builder.item :id => i[:id], :href => i[:href], 'media-type' => i[:media_type]
+          end
         end
       end
     end
