@@ -134,6 +134,7 @@ module EeePub
         {:id => id, :href => href, :media_type => media_type}
       end
 
+      result += [{:id => 'nav', :href => 'nav.html', :media_type => 'application/xhtml+xml', :properties=>"nav"}]
       result += [{:id => 'ncx', :href => ncx, :media_type => 'application/x-dtbncx+xml'}] if ncx
       result
     end

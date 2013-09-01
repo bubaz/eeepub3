@@ -16,7 +16,6 @@ module EeePub
     default_value :doc_title, 'Untitled'
 
     def build_xml(builder)
-      builder.declare! :DOCTYPE, :ncx, :PUBLIC, "-//NISO//DTD ncx 2005-1//EN", "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd"
       builder.ncx :xmlns => "http://www.daisy.org/z3986/2005/ncx/", :version => "2005-1" do
         build_head(builder)
         builder.docTitle { builder.text doc_title }
