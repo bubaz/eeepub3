@@ -82,9 +82,7 @@ module EeePub
             end
           end
         end
-        builder.meta(:property => 'dcterms:modified') do
-          Time.now.strftime('%FT%TZ')
-        end
+        builder.meta({:property => 'dcterms:modified'}, Time.now.strftime('%FT%TZ'))
         builder.meta(:name => 'cover', :content => self.cover) if self.cover
       end
     end
