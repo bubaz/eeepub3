@@ -72,24 +72,32 @@ module EeePub
     # @param [String] filename the file name
     # @return [String] the media-type
     def guess_media_type(filename)
-      case filename
-      when /.*\.x?html?$/i
-        'application/xhtml+xml'
-      when /.*\.css$/i
-        'text/css'
-      when /.*\.(jpeg|jpg)$/
-        'image/jpeg'
-      when /.*\.png$/i
-        'image/png'
-      when /.*\.gif$/i
-        'image/gif'
-      when /.*\.svg$/i
-        'image/svg+xml'
-      when /.*\.ncx$/i
-        'application/x-dtbncx+xml'
-      when /.*\.opf$/i
-        'application/oebps-package+xml'
-      end
+      ext = File.extname(filename)
+      mimes = {
+        '.png' => 'image/png',
+        '.js' => 'application/x-javascript',
+        '.html' => 'application/xhtml+xml',
+        '.jpeg' => 'image/jpeg',
+        '.jpg' => 'image/jpeg',
+        '.gif' => 'image/gif',
+        '.svg' => 'image/svg+xml',
+        '.ncx' => 'application/x-dtbncx+xml',
+        '.css' => 'text/css',
+        '.less' => 'text/plain', #explicit not text/css because of validation failure
+        '.mp4' => 'video/mp4',
+        '.mp3' => 'audio/mpeg',
+        '.webm' => 'video/webm',
+        '.woff' => 'application/font-woff',
+        '.otf' => 'application/vnd.ms-opentype',
+        '.ttf' => 'application/vnd.ms-opentype',
+        '.eot' => 'application/vnd.ms-opentype',
+        '.db' =>'application/octet-stream',  #explicit,
+        '.nes'=>'text/plain; charset=x-user-defined', #explicit
+        '.txt'=>'text/plain'
+      }
+
+      mimes[ext] || 'application/octet-stream'
+
     end
 
     # Convert options for xml attributes
