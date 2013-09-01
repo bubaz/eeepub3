@@ -16,7 +16,7 @@ module EeePub
     default_value :doc_title, 'Untitled'
 
     def build_xml(builder)
-      builder.ncx :xmlns => "http://www.daisy.org/z3986/2005/ncx/", :version => "2005-1" do
+      builder.ncx 'xmlns:ncx' => 'http://www.daisy.org/z3986/2005/ncx/', :version => '2005-1', :xmlns => 'http://www.daisy.org/z3986/2005/ncx/', 'xml:lang' => 'en' do
         build_head(builder)
         builder.docTitle { builder.text doc_title }
         build_nav_map(builder)

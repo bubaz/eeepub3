@@ -91,7 +91,7 @@ module EeePub
       builder.manifest do
         complete_manifest.each do |i|
           if i[:media_type] == 'application/xhtml+xml'
-            builder.item :id => i[:id], :href => i[:href], 'media-type' => i[:media_type], 'properties' => 'scripted'
+            builder.item :id => i[:id], :href => i[:href], 'media-type' => i[:media_type], 'properties' => i[:properties] || 'scripted'
           else
             builder.item :id => i[:id], :href => i[:href], 'media-type' => i[:media_type]
           end
@@ -134,7 +134,7 @@ module EeePub
         {:id => id, :href => href, :media_type => media_type}
       end
 
-      result += [{:id => 'nav', :href => 'nav.html', :media_type => 'application/xhtml+xml', :properties=>"nav"}]
+      result += [{:id => 'nav', :href => 'nav.html', :media_type => 'application/xhtml+xml', :properties => 'nav'}]
       result += [{:id => 'ncx', :href => ncx, :media_type => 'application/x-dtbncx+xml'}] if ncx
       result
     end
